@@ -1,1 +1,0 @@
-SQL CREATE TABLE statements for the database schema based on the provided specification, incorporating the normalization adjustment from the previous response (removing total_price from the Booking table to ensure 3NF compliance).
