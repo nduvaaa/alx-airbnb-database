@@ -1,4 +1,4 @@
--- Initial Query: Retrieve all bookings with user, property, and payment details
+-- Initial Query: Retrieve all bookings with user, property, and payment details with AND condition
 SELECT 
     b.booking_id,
     b.start_date,
@@ -23,7 +23,10 @@ INNER JOIN
 INNER JOIN 
     Property p ON b.property_id = p.property_id
 INNER JOIN 
-    Payment pay ON b.booking_id = pay.booking_id;
+    Payment pay ON b.booking_id = pay.booking_id
+WHERE 
+    b.status = 'confirmed'
+    AND b.start_date >= '2025-01-01';
 
 -- Performance Analysis: EXPLAIN ANALYZE for initial query
 EXPLAIN ANALYZE SELECT 
@@ -50,7 +53,10 @@ INNER JOIN
 INNER JOIN 
     Property p ON b.property_id = p.property_id
 INNER JOIN 
-    Payment pay ON b.booking_id = pay.booking_id;
+    Payment pay ON b.booking_id = pay.booking_id
+WHERE 
+    b.status = 'confirmed'
+    AND b.start_date >= '2025-01-01';
 
 -- Refactored Query: Optimized version with selective columns and indexing
 SELECT 
@@ -72,5 +78,6 @@ INNER JOIN
     Payment pay ON b.booking_id = pay.booking_id
 WHERE 
     b.status = 'confirmed'
+    AND b.start_date >= '2025-01-01'
 ORDER BY 
     b.start_date;
